@@ -29,7 +29,6 @@ int main(int argc, char *argv[]){
 }
 
 
-
 status_t validate_args(int argc, char *argv[], config_t *config){
     if(argv == NULL || config == NULL)
 	return ERROR_NULL_POINTER;

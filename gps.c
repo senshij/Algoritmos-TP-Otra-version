@@ -15,6 +15,12 @@ status_t                     _parse_line(struct tm *);
 status_t      _parse_field_time(char [], struct tm *);
 /******************************************************/
 
+
+
+/************************************************************************************
+Funcion principal del programa, procesa los datos cargados en el flujo de entrada,
+los carga en una estructura, le agrega la fecha del dia y luego lo imprime por pantalla. 
+*************************************************************************************/
 status_t process_gps_data(void){
     extern config_t config;
     status_t st;
@@ -37,6 +43,13 @@ status_t process_gps_data(void){
     return OK;
 }
 
+/***************************************************************************
+Función para el proceso de los datos cargados.
+Lee una linea del flujo de entrada, si esta empieza con el 
+encabezado de protocolo que contiene los datos de geolocalización,
+devuelve FOUND, extrae la hora y lo guarda en la estructura que recibe.
+Sino devuelve NOT_FOUND.
+***********************************************************************/
 
 status_t _parse_line(struct tm *time_struct){
     status_t st;
@@ -61,7 +74,11 @@ status_t _parse_line(struct tm *time_struct){
     }
     return NOT_FOUND;
 }
-
+/***************************************************************************
+Recibe una cadena de caracteres que contiene digitos,
+verifica que corresponda al formato de horas minutos y segundos,
+y si es asi, lo guarda en la estructura que recibe.
+*******************************************************************/
 status_t _parse_field_time(char field[], struct tm *time_struct){     
     int aux;
     int value;
