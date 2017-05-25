@@ -5,8 +5,6 @@
 #include "config.h"
 #include "errors.h"
 #include "gps.h"
-
-
 #define NUMBER_ARGS 3
 #define FORMAT_FLAG_POSITION 1
 #define FORMAT_FLAG_SPAN 4
@@ -17,12 +15,15 @@
 #define FORMAT_TYPE_GREGORIAN_SPAN 14
 #define FORMAT_TYPE_JULIAN_SPAN 13
 
+/***************Prototipos******************************/
 status_t validate_args(int argc, char *argv[], config_t *);
+/*******************************************************/
+
 extern config_t config;
 
 int main(int argc, char *argv[]){
     status_t st;
-    
+
     if((st=(validate_args(argc,argv, &config))) != OK){
         print_error_message(st);
         return EXIT_FAILURE;
@@ -33,6 +34,8 @@ int main(int argc, char *argv[]){
     }
     return EXIT_SUCCESS;
 }
+
+
 
 status_t validate_args(int argc, char *argv[], config_t *config){
     if(argv == NULL || config == NULL)

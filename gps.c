@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
 #include <string.h>
@@ -10,7 +9,6 @@
 #include "gps.h"
 
 
-#define MAX_STR 100
 #define FIELD_SPAN_TIME 6
 #define FIELD_POS_TIME 7
 #define MAX_LINE 100
@@ -48,7 +46,7 @@ status_t process_gps_data(void){
 status_t _parse_line(struct tm *time_struct){
     status_t st;
     char line[MAX_LINE];
-    char field_time[MAX_LINE];
+    char field_time[FIELD_SPAN_TIME + 1];
     size_t i;
      
     if(time_struct == NULL)

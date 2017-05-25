@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <time.h>
 #include "types.h"
 #include "config.h"
@@ -27,7 +26,7 @@ void print_time(struct tm time, format_t format){
 		  );
 	    break;
 	case JULIAN_FORMAT:
-	    printf("%i%i%i%i%i\n",\
+	    printf("%i%03i%02i%02i%02i\n",\
 		   1900+time.tm_year,\
 		   1+time.tm_yday,\
 		   time.tm_hour,\
