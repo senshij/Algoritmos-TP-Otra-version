@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
 #include <string.h>
@@ -8,12 +9,6 @@
 #include "date.h"
 #include "gps.h"
 
-
-#define FIELD_SPAN_TIME 6
-#define FIELD_POS_TIME 7
-#define MAX_LINE 100
-#define ID_MSG "$GPGGA"
-#define FIELD_SPAN_ID_MSG 6
  
 /******************Prototipos**************************/
 status_t                     _parse_line(struct tm *);

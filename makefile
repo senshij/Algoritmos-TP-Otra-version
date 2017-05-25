@@ -5,7 +5,7 @@ all: gpsdateparser
 gpsdateparser: main.o config.o date.o errors.o gps.o
 	$(CC) $(CFLAGS) -o gpsdateparser main.o config.o gps.o errors.o date.o
 
-main.o: main.c config.h types.h errors.h date.h gps.h  
+main.o: main.c config.h types.h errors.h date.h gps.h main.h  
 	$(CC) $(CFLAGS) -o main.o -c main.c
 
 config.o: config.c config.h types.h
