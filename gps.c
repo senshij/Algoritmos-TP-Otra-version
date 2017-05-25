@@ -27,6 +27,7 @@ status_t process_gps_data(void){
     time_t machine_time;
     struct tm *time_struct;
     struct tm gps_time;
+
     if (time(&machine_time) == -1){	/* Se compara con -1 porque así está definido en el estándar ANSI C '89 */
         print_error_message(ERROR_MACHINE_TIME);
         return EXIT_FAILURE;
@@ -46,7 +47,7 @@ status_t process_gps_data(void){
 /***************************************************************************
 Función para el proceso de los datos cargados.
 Lee una linea del flujo de entrada, si esta empieza con el 
-encabezado de protocolo que contiene los datos de geolocalización,
+encabezado de protocolo que contiene los datos de geolocalización
 devuelve FOUND, extrae la hora y lo guarda en la estructura que recibe.
 Sino devuelve NOT_FOUND.
 ***********************************************************************/
