@@ -4,6 +4,20 @@
 #include "config.h"
 #include "date.h"
 
+/****************************************************
+Guarda en una estructura la fecha y hora de la maquina.
+Lo asigna a un puntero a estructura pasado por puntero.
+**********************************************/
+status_t my_local_time(struct tm ** time_struct){
+    time_t temp;
+    if (time(&temp) == -1){	/* Se compara con -1 porque así está definido en el estándar ANSI C '89 */
+        return ERROR;
+    }   
+    (*time_struct) = localtime(&temp);
+    return OK;
+}
+
+
 status_t merge_time(struct tm input_time, struct tm *actual_time){
     if(actual_time == NULL)
 	return ERROR_NULL_POINTER;

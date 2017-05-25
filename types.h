@@ -11,7 +11,7 @@ typedef enum{
     ERROR_READ_LINE,
     ERROR_INVALID_DATA,
     ERROR_NULL_POINTER,
-    ERROR_MACHINE_TIME
+    ERROR
 } status_t;
 
 typedef enum{

@@ -5,4 +5,4 @@
 #define ID_MSG "$GPGGA"
 #define FIELD_SPAN_ID_MSG 6
 
-status_t process_gps_data(void);
+status_t     parse_line(struct tm *);

@@ -4,7 +4,7 @@
 #include "types.h"
 #include "config.h"
 #include "errors.h"
-#include "gps.h"
+#include "process.h"
 #include "main.h"
 
 
@@ -27,7 +27,10 @@ int main(int argc, char *argv[]){
     }
     return EXIT_SUCCESS;
 }
-
+/*******************************************
+Funcion validar argumentos, valida lo ingresado por linea de comando
+y lo guarda en una estructura.
+******************************************/
 
 status_t validate_args(int argc, char *argv[], config_t *config){
     if(argv == NULL || config == NULL)
