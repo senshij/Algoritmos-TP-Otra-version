@@ -21,6 +21,9 @@ void print_error_message(status_t st){
         case ERROR_INVALID_NUMBER_ARGS:
             fprintf(stderr, "%s\n", MSG_ERROR_INVALID_NUMBER_ARGS);
 	    break;
+        case ERROR_DATE:
+            fprintf(stderr, "%s\n", MSG_ERROR_DATE);
+	    break;
         default:
             ;
     } /* switch */
