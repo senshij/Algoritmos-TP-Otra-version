@@ -9,7 +9,10 @@
 status_t _get_date(struct tm **);
 /********************************************/
 
-
+/******************************************
+Función agregar fecha, guarda en la estructura 
+que recibe por puntero la fecha del dia.
+******************************************/
 status_t add_date(struct tm *time_struct){
     struct tm * aux;
     status_t st;
@@ -26,10 +29,10 @@ status_t add_date(struct tm *time_struct){
     return OK;
 }
 
-/****************************************************
-Guarda en una estructura la fecha y hora de la maquina.
-Lo asigna a un puntero a estructura pasado por puntero.
-**********************************************/
+/******************************************
+Guarda en una estructura pasada por puntero
+la fecha y hora del dia
+****************************************/
 status_t _get_date(struct tm ** aux){
     time_t temp;
 
@@ -40,6 +43,11 @@ status_t _get_date(struct tm ** aux){
     return OK;
 }
 
+/*****************************************
+Función para imprimir con formato fechas y horas cargadas 
+en estructuras de tipo struct tm. Recibe una estructura tm por copia
+y el formato en el cual imprimirla.
+****************************************/
 
 void print_time(struct tm time, format_t format){
     switch(format){

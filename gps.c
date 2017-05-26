@@ -47,8 +47,8 @@ status_t parse_line(struct tm *time_struct){
 }
 /***************************************************************************
 Recibe una cadena de caracteres que contiene digitos,
-verifica que corresponda al formato de horas minutos y segundos,
-y si es asi, lo guarda en la estructura que recibe.
+verifica que corresponda al formato de horas hhmmss,
+y si es asi lo guarda en la estructura que recibe.
 *******************************************************************/
 status_t _parse_field_time(char field[], struct tm *time_struct){     
     int aux;
@@ -57,15 +57,15 @@ status_t _parse_field_time(char field[], struct tm *time_struct){
     value = atoi (field);
     aux = (value /10000);
     if(aux > 23)
-        return ERROR_INVALID_DATA;
+        return ERROR;
     (*time_struct).tm_hour = aux;
     aux = (value%10000)/100;
     if(aux > 59)
-        return ERROR_INVALID_DATA;
+        return ERROR;
     (*time_struct).tm_min = aux;
     aux = (value%100);
     if(aux > 59)
-        return ERROR_INVALID_DATA;
+        return ERROR;
     (*time_struct).tm_sec = aux;
 
     return OK;

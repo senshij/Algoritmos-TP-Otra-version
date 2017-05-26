@@ -27,10 +27,11 @@ int main(int argc, char *argv[]){
     }
     return EXIT_SUCCESS;
 }
-/*******************************************
-Funcion validar argumentos, valida lo ingresado por linea de comando
-y lo guarda en una estructura.
-******************************************/
+/*************************************************************
+Funcion para validar argumentos ingresados por linea 
+de comandos, valida el numero de argumentos ingresados
+y que sean correctos, luego guarda lo ingrasado en una estructura.
+**********************************************************/
 
 status_t validate_args(int argc, char *argv[], config_t *config){
     if(argv == NULL || config == NULL)

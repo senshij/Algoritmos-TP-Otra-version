@@ -9,9 +9,6 @@ void print_error_message(status_t st){
 	case ERROR_INVALID_ARGS:
 	    fprintf(stderr, "%s\n", MSG_ERROR_INVALID_ARGS);
 	    break;
-	case ERROR_EOF:
-	    fprintf(stderr, "%s\n", MSG_ERROR_EOF);
-	    break;
 	case ERROR_INVALID_DATA:
 	    fprintf(stderr, "%s\n", MSG_ERROR_INVALID_DATA);
 	    break;

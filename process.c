@@ -8,9 +8,8 @@
 #include "process.h"
 
 /************************************************************************************
-Funcion principal del programa guarda la fecha del dia en una estructura
-y procesa los datos cargados por el flujo de entrada.
-Si encuentra una linea que contenga el encabezado de geolocalización, le extrae la hora 
+Funcion principal, lee los datos cargados por el flujo de entrada y
+si encuentra una linea que contenga el encabezado de geolocalización, le extrae la hora 
 lo guarda en una estructura, y luego le agrega la fecha del dia. 
 *************************************************************************************/
 
