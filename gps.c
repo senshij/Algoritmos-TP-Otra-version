@@ -27,6 +27,7 @@ status_t parse_line(struct tm *time_struct){
     char line[MAX_LINE];
     char field_time[FIELD_SPAN_TIME + 1];
     size_t i;
+
     if(time_struct == NULL)
         return ERROR_NULL_POINTER;
     if(fgets(line, MAX_LINE - 2 ,stdin) == NULL)

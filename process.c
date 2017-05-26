@@ -21,7 +21,9 @@ status_t process_gps_data(void){
     struct tm time_struct;
 
     while((st = parse_line(&time_struct)) != END_OF_FILE){
-        if(st == ERROR_READ_LINE)
+        if (st == ERROR_NULL_POINTER)
+            return st;
+        if(st == ERROR_READ_LINE || st == ERROR_INVALID_DATA)
             print_error_message(st);
         if(st == FOUND){
            if((st = add_date(&time_struct)) != OK){
@@ -29,6 +31,7 @@ status_t process_gps_data(void){
            }
            print_time(time_struct, config.format);
         }
+        
     }
     return OK;
 }
