@@ -29,9 +29,9 @@ int main(int argc, char *argv[]){
 }
 /*************************************************************
 Funcion para validar argumentos ingresados por linea 
-de comandos, valida el numero de argumentos ingresados
+de comandos. Valida el numero de argumentos ingresados
 y que sean correctos, luego guarda lo ingrasado en una estructura.
-**********************************************************/
+**************************************************************/
 
 status_t validate_args(int argc, char *argv[], config_t *config){
     if(argv == NULL || config == NULL)

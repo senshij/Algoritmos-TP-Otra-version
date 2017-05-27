@@ -14,7 +14,7 @@
 status_t      _parse_field_time(char [], struct tm *);
 /******************************************************/
 
-/***************************************************************************
+/**********************************************************************
 Función para el proceso de los datos cargados.
 Lee una linea del flujo de entrada, si esta empieza con el 
 encabezado de protocolo que contiene los datos de geolocalización
@@ -34,22 +34,24 @@ status_t parse_line(struct tm *time_struct){
         return END_OF_FILE;
     if(!strncmp(line, ID_MSG, FIELD_SPAN_ID_MSG)){
         for(i = 0; i < FIELD_SPAN_TIME; i++){
-            if (!isdigit(line[i + FIELD_POS_TIME]))
+            if(!isdigit(line[i + FIELD_POS_TIME]))
                 return ERROR_READ_LINE;
             field_time[i] = line[i + FIELD_POS_TIME]; 
         }
         field_time[FIELD_SPAN_TIME + 1] = '\0'; 
-        if((st  = _parse_field_time(field_time, time_struct)) != OK)
+        if((st = _parse_field_time(field_time, time_struct)) != OK)
             return ERROR_INVALID_DATA;
         return FOUND;
     }
     return NOT_FOUND;
 }
-/***************************************************************************
+
+/******************************************************************
 Recibe una cadena de caracteres que contiene digitos,
 verifica que corresponda al formato de horas hhmmss,
 y si es asi lo guarda en la estructura que recibe.
 *******************************************************************/
+
 status_t _parse_field_time(char field[], struct tm *time_struct){     
     int aux;
     int value;
