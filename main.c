@@ -1,3 +1,6 @@
+/************
+FILE main.c
+************/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -7,14 +10,16 @@
 #include "process.h"
 #include "main.h"
 
-
 /***************Prototipos******************************/
 status_t validate_args(int argc, char *argv[], config_t *);
 /*******************************************************/
 
+
 extern config_t config;
 
+
 int main(int argc, char *argv[]){
+    
     status_t st;
 
     if((st=(validate_args(argc,argv, &config))) != OK){
@@ -27,12 +32,13 @@ int main(int argc, char *argv[]){
     }
     return EXIT_SUCCESS;
 }
-/*************************************************************
-Funcion para validar argumentos ingresados por linea 
-de comandos. Valida el numero de argumentos ingresados
-y que sean correctos, luego guarda lo ingrasado en una estructura.
-**************************************************************/
 
+
+/***************************************************************
+Función para validar argumentos ingresados por línea 
+de comandos. Valida el número de argumentos ingresados
+y que sean correctos, luego guarda lo ingresado en una estructura.
+****************************************************************/
 status_t validate_args(int argc, char *argv[], config_t *config){
     if(argv == NULL || config == NULL)
 	return ERROR_NULL_POINTER;

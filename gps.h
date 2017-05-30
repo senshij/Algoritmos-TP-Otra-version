@@ -1,3 +1,6 @@
+/*********
+FILE gps.h
+**********/
 #include <stdio.h>
 #define FIELD_SPAN_TIME 6
 #define FIELD_POS_TIME 7

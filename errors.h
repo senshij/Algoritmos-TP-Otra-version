@@ -1,3 +1,6 @@
+/*****************
+FILE errors.h
+****************/
 #include <stdio.h>
 #define MSG_ERROR_INVALID_DATA "El dato leído es inválido."
 #define MSG_ERROR_EOF "Fin de archivo."

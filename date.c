@@ -1,9 +1,11 @@
+/************
+FILE date.c
+************/
 #include <stdio.h>
 #include <time.h>
 #include "types.h"
 #include "config.h"
 #include "date.h"
-
 
 /*****************prototipos*****************/
 status_t _get_date(struct tm **);
@@ -36,19 +38,18 @@ la fecha y hora del dia
 status_t _get_date(struct tm ** aux){
     time_t temp;
 
-    if (time(&temp) == -1){	/* Se compara con -1 porque así está definido en el estándar ANSI C '89 */
-        return ERROR;
-    }   
+    if (time(&temp) == -1) 
+        return ERROR;      
     (*aux) = localtime(&temp);
     return OK;
 }
 
 /*****************************************
-Función para imprimir con formato fechas y horas cargadas 
-en estructuras de tipo struct tm. Recibe una estructura tm por copia
+Función para imprimir fechas y horas cargadas 
+en estructuras de tipo struct tm. 
+Recibe una estructura tm por copia
 y el formato en el cual imprimirla.
 ****************************************/
-
 void print_time(struct tm time, format_t format){
     switch(format){
         case GREGORIAN_FORMAT:

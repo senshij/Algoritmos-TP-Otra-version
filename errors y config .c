@@ -1,13 +1,10 @@
 /*************
 FILE errors.c
 ************/
-
-
 #include <stdio.h>
 #include "types.h"
 #include "config.h"
 #include "errors.h"
-
 
 void print_error_message(status_t st){
     switch(st){
@@ -28,5 +25,15 @@ void print_error_message(status_t st){
 	    break;
         default:
             ;
-    } /* switch */
+    } 
 } 
+//////////////////////////////////////////////////////////////////
+
+/*************
+FILE config.c
+**************/
+#include <stdio.h>
+#include "types.h"
+#include "config.h"
+
+config_t config;

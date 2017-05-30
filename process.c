@@ -1,3 +1,6 @@
+/*************
+FILE process.c
+*************/
 #include <stdio.h>
 #include <time.h>
 #include "types.h"
@@ -7,13 +10,12 @@
 #include "gps.h"
 #include "process.h"
 
+
 /************************************************************************************
 Funcion principal, lee los datos cargados por el flujo de entrada y
 si encuentra una linea que contenga el encabezado de geolocalización, le extrae la hora 
 lo guarda en una estructura, y luego le agrega la fecha del dia. 
 *************************************************************************************/
-
-
 status_t process_gps_data(void){
     extern config_t config;
     status_t st;

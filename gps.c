@@ -1,3 +1,6 @@
+/**********
+FILE gps.c
+**********/
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
@@ -9,19 +12,18 @@
 #include "date.h"
 #include "gps.h"
 
- 
 /******************Prototipos**************************/
 status_t      _parse_field_time(char [], struct tm *);
 /******************************************************/
 
-/**********************************************************************
+/**************************************************
 Función para el proceso de los datos cargados.
-Lee una linea del flujo de entrada, si esta empieza con el 
-encabezado de protocolo que contiene los datos de geolocalización
-devuelve FOUND, extrae la hora y lo guarda en la estructura que recibe.
-Sino devuelve NOT_FOUND.
-***********************************************************************/
-
+Lee una linea del flujo de entrada,
+si esta empieza con el encabezado de protocolo
+que contiene los datos de geolocalización devuelve FOUND,
+extrae la hora y lo guarda en la estructura que recibe.
+Si no devuelve NOT_FOUND.
+******************************************************/
 status_t parse_line(struct tm *time_struct){
     status_t st;
     char line[MAX_LINE];
@@ -46,12 +48,11 @@ status_t parse_line(struct tm *time_struct){
     return NOT_FOUND;
 }
 
-/******************************************************************
-Recibe una cadena de caracteres que contiene digitos,
+/*****************************************************
+Recibe una cadena de caracteres que contiene dígitos,
 verifica que corresponda al formato de horas hhmmss,
 y si es asi lo guarda en la estructura que recibe.
-*******************************************************************/
-
+****************************************************/
 status_t _parse_field_time(char field[], struct tm *time_struct){     
     int aux;
     int value;

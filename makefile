@@ -1,3 +1,7 @@
+#**************
+#FILE makefile
+#**************
+
 CC=gcc
 CFLAGS=-ansi -pedantic -Wall -o2
 all: gpsdateparser

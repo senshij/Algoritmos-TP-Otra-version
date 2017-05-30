@@ -1,3 +1,6 @@
+/*************
+FILE types.h
+*************/
 #include <stdio.h>
 
 typedef enum{

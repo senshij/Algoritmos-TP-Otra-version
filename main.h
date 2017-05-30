@@ -1,3 +1,8 @@
+/*******************************
+FILE main.h
+*******************************/
+
+
 #include <stdio.h>
 #define NUMBER_ARGS 3
 #define FORMAT_FLAG_POSITION 1
