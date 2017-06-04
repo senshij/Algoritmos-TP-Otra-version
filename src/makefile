@@ -26,3 +26,6 @@ date.o: date.c date.h config.h types.h
 
 process.o: process.c gps.h types.h date.h config.h process.h errors.h
 	$(CC) $(CFLAGS) -o process.o -c process.c
+
+clean:
+	rm *.o
