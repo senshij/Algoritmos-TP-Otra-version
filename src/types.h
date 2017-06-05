@@ -19,6 +19,6 @@ typedef enum{
 } status_t;
 
 typedef enum{
-    GREGORIAN_FORMAT,
-    JULIAN_FORMAT
+    DATE_AAAAMMDDHHMMSS_FORMAT,
+    DATE_AAAADDDHHMMSS_FORMAT
 } format_t;

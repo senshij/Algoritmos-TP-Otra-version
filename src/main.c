@@ -4,11 +4,11 @@ FILE main.c
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "main.h"
 #include "types.h"
 #include "config.h"
 #include "errors.h"
 #include "process.h"
-#include "main.h"
 
 /***************Prototipos******************************/
 status_t validate_args(int argc, char *argv[], config_t *);
@@ -34,24 +34,25 @@ int main(int argc, char *argv[]){
 }
 
 
-/***************************************************************
+/*********************************************************
 Función para validar argumentos ingresados por línea 
 de comandos. Valida el número de argumentos ingresados
-y que sean correctos, luego guarda lo ingresado en una estructura.
-****************************************************************/
+y que sean correctos, luego guarda lo ingresado en
+una estructura de configuración.
+**********************************************************/
 status_t validate_args(int argc, char *argv[], config_t *config){
     if(argv == NULL || config == NULL)
 	return ERROR_NULL_POINTER;
     if(argc != NUMBER_ARGS)
 	return ERROR_INVALID_NUMBER_ARGS;
-    if(strncmp(argv[FORMAT_FLAG_POSITION], FORMAT_FLAG, FORMAT_FLAG_SPAN))
+    if(strncmp(argv[FMT_FLAG_POSITION], FMT_FLAG, FMAT_FLAG_SPAN))
 	return ERROR_INVALID_ARGS;
-    if(!strncmp(argv[FORMAT_TYPE_POSITION], FORMAT_TYPE_GREGORIAN, FORMAT_TYPE_GREGORIAN_SPAN)){
-	(*config).format = GREGORIAN_FORMAT;
+    if(!strncmp(argv[FMT_TYPE_POSITION], DATE_FMT_AAAAMMDDHHMMSS, DATE_FMT_AAAAMMDDHHMMSS_SPAN)){
+	config->format = DATE_AAAAMMDDHHMMSS_FORMAT;
 	return OK;
     }
-    if(!strncmp(argv[FORMAT_TYPE_POSITION], FORMAT_TYPE_JULIAN, FORMAT_TYPE_JULIAN_SPAN)){
-	(*config).format = JULIAN_FORMAT;
+    if(!strncmp(argv[FMT_TYPE_POSITION], DATE_FMT_AAAADDDHHMMSS, DATE_FMT_AAAADDDHHMMSS_SPAN)){
+	config->format = DATE_AAAADDDHHMMSS_FORMAT;
 	return OK;
     }
     return ERROR_INVALID_ARGS;
