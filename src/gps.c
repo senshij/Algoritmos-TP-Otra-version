@@ -8,12 +8,13 @@ FILE gps.c
 #include <ctype.h>
 #include "types.h"
 #include "config.h"
+#include "msgs.h"
 #include "errors.h"
-#include "date.h"
+#include "dates.h"
 #include "gps.h"
 
 /******************Prototipos**************************/
-status_t      _parse_field_time(char [], struct tm *);
+status_t parse_field_time(long unsigned, struct tm *);
 /******************************************************/
 
 /**************************************************
@@ -24,52 +25,68 @@ que contiene los datos de geolocalización devuelve FOUND,
 extrae la hora y lo guarda en la estructura que recibe.
 Si no devuelve NOT_FOUND.
 ******************************************************/
-status_t parse_line(struct tm *time_struct){
+status_t parse_gps_line(struct tm *time_struct, bool_t * found, bool_t * eof){
     status_t st;
-    char line[MAX_LINE];
-    char field_time[FIELD_SPAN_TIME + 1];
-    size_t i;
-
-    if(time_struct == NULL)
+    char * token;
+    char ** remainder;
+    char gps_line[MAX_GPS_LINE];
+    long unsigned field_time_value;
+    
+    if(time_struct == NULL || eof == NULL || found == NULL)
         return ERROR_NULL_POINTER;
-    if(fgets(line, MAX_LINE - 2 ,stdin) == NULL)
-        return END_OF_FILE;
-    if(!strncmp(line, ID_MSG, FIELD_SPAN_ID_MSG)){
-        for(i = 0; i < FIELD_SPAN_TIME; i++){
-            if(!isdigit(line[i + FIELD_POS_TIME]))
-                return ERROR_READ_LINE;
-            field_time[i] = line[i + FIELD_POS_TIME]; 
-        }
-        field_time[FIELD_SPAN_TIME + 1] = '\0'; 
-        if((st = _parse_field_time(field_time, time_struct)) != OK)
-            return ERROR_INVALID_DATA;
-        return FOUND;
+    if(fgets(gps_line, MAX_GPS_LINE - 2 ,stdin) == NULL){
+        (*eof) = TRUE;
+        return OK;
     }
-    return NOT_FOUND;
+    token = strtok(gps_line, DELIMITER);
+    if (token ==NULL){
+       (*found) = FALSE;  
+       return OK;
+    }
+    if(strncmp(token, ID_MSG, FIELD_SPAN_ID_MSG)){
+        (*found) = FALSE; 
+          return OK;
+    }
+    token = strtok(NULL, DELIMITER);
+    field_time_value = strtoul(token, remainder, 10);
+    if(!(**remainder))
+        return ERROR_INVALID_DATA;
+    if((st = parse_field_time(field_time_value, time_struct)) != OK)
+            return ERROR_INVALID_DATA;
+    (*found) = TRUE;
+    return OK;
 }
-
 /*****************************************************
 Recibe una cadena de caracteres que contiene dígitos,
 verifica que corresponda al formato de horas hhmmss,
 y si es asi lo guarda en la estructura que recibe.
 ****************************************************/
-status_t _parse_field_time(char field[], struct tm *time_struct){     
-    int aux;
-    int value;
-
-    value = atoi (field);
+status_t parse_field_time(long unsigned value, struct tm *time_struct){     
+    long unsigned aux;
+    
     aux = (value /10000);
     if(aux > 23)
-        return ERROR;
-    (*time_struct).tm_hour = aux;
+        return ERROR_INVALID_DATA;
+    time_struct ->tm_hour = aux;
     aux = (value%10000)/100;
     if(aux > 59)
-        return ERROR;
-    (*time_struct).tm_min = aux;
+        return ERROR_INVALID_DATA;
+    time_struct->tm_min = aux;
     aux = (value%100);
     if(aux > 59)
-        return ERROR;
-    (*time_struct).tm_sec = aux;
-
+        return ERROR_INVALID_DATA;
+    time_struct->tm_sec = aux;
     return OK;
 }   
+/********************************************/
+/********************************************/
+
+   
+   
+   
+  
+   
+
+
+
+

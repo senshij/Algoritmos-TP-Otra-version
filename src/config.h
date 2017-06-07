@@ -3,8 +3,8 @@ FILE config.h
 *************/
 
 #include <stdio.h>
-
+#define OUTPUT_STREAM stdout
 
 typedef struct{
-    format_t format;
+    date_format_t date_format;
 } config_t;

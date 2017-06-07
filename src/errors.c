@@ -6,6 +6,7 @@ FILE errors.c
 #include <stdio.h>
 #include "types.h"
 #include "config.h"
+#include "msgs.h"
 #include "errors.h"
 
 
@@ -26,6 +27,10 @@ void print_error_message(status_t st){
         case ERROR_DATE:
             fprintf(stderr, "%s\n", MSG_ERROR_DATE);
 	    break;
+        case ERROR_PRINT_FORMAT:
+            fprintf(stderr, "%s\n", MSG_ERROR_PRINT_FORMAT);
+	    break;
+        
         default:
             ;
     } /* switch */
