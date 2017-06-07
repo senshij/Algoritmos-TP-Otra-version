@@ -6,8 +6,9 @@ FILE process.c
 #include "process.h"
 #include "types.h"
 #include "config.h"
+#include "msgs.h"
 #include "errors.h"
-#include "date.h"
+#include "dates.h"
 #include "gps.h"
 
 extern config_t config;
@@ -20,19 +21,23 @@ lo guarda en una estructura, y luego le agrega la fecha del dia.
 status_t process_gps_data(void){
     status_t st;
     struct tm time_struct;
-
-    while((st = parse_gps_line(&time_struct, &config)) != END_OF_FILE){
+    bool_t eof;
+    bool_t found_geo_data;
+    FILE* fo = OUTPUT_STREAM;
+    eof = FALSE;
+    while(eof == FALSE){
+        st = parse_gps_line(&time_struct, &found_geo_data, &eof);
         if (st == ERROR_NULL_POINTER)
-            return st;
-        if(st == ERROR_READ_LINE || st == ERROR_INVALID_DATA)
+            return ERROR_NULL_POINTER;
+        if(st == ERROR_INVALID_DATA)
             print_error_message(st);
-        if(st == FOUND){
-           if((st = add_date(&time_struct)) != OK){
+        if(found_geo_data == TRUE){
+           if((st = set_actual_date(&time_struct)) != OK){
                return st;
            }
-           print_time(time_struct, config.format);
+           if ((st = print_time(time_struct, config.date_format, fo)) != OK)
+               return st;
         }
-        
     }
     return OK;
 }

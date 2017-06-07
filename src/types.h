@@ -4,17 +4,18 @@ FILE types.h
 #include <stdio.h>
 
 typedef enum{
+    FALSE,
+    TRUE
+} bool_t;
+
+typedef enum{
     OK,
-    FOUND,
-    NOT_FOUND,
-    END_OF_FILE,
+    ERROR_PRINT_FORMAT,
     ERROR_INVALID_ARGS,
     ERROR_INVALID_NUMBER_ARGS,
-    ERROR_EOF,
-    ERROR_READ_LINE,
     ERROR_INVALID_DATA,
     ERROR_NULL_POINTER,
-    :RROR_DATE
+    ERROR_DATE
 } status_t;
 
 typedef enum{
