@@ -3,14 +3,15 @@ FILE process.c
 *************/
 #include <stdio.h>
 #include <time.h>
+#include "process.h"
 #include "types.h"
 #include "config.h"
 #include "errors.h"
 #include "date.h"
 #include "gps.h"
-#include "process.h"
 
 extern config_t config;
+
 /************************************************************************************
 Funcion principal, lee los datos cargados por el flujo de entrada y
 si encuentra una linea que contenga el encabezado de geolocalización, le extrae la hora 

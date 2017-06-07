@@ -1,8 +1,6 @@
 /*******************************
 FILE main.h
 *******************************/
-
-
 #include <stdio.h>
 #define NUMBER_ARGS 3
 #define FMT_FLAG_POSITION 1

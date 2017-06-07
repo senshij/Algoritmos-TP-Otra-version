@@ -14,11 +14,10 @@ typedef enum{
     ERROR_READ_LINE,
     ERROR_INVALID_DATA,
     ERROR_NULL_POINTER,
-    ERROR,
-    ERROR_DATE
+    :RROR_DATE
 } status_t;
 
 typedef enum{
     DATE_AAAAMMDDHHMMSS_FORMAT,
     DATE_AAAADDDHHMMSS_FORMAT
-} format_t;
+} date_format_t;
