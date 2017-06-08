@@ -1,6 +1,6 @@
 /************
- * FILE dates.c
- ************/
+FILE date.c
+************/
 #include <stdio.h>
 #include <time.h>
 #include "types.h"
@@ -11,10 +11,10 @@
 status_t get_date(struct tm **);
 /********************************************/
 
-/********************************************
- * Función agregar fecha, guarda en la estructura
- * que recibe por puntero la fecha del dia.
- ********************************************/
+/******************************************
+Función agregar fecha, guarda en la estructura 
+que recibe por puntero la fecha del dia.
+******************************************/
 status_t set_actual_date(struct tm *time_struct){
     struct tm * aux;
     status_t st;
@@ -24,10 +24,10 @@ status_t set_actual_date(struct tm *time_struct){
     }
     if(time_struct == NULL)
 	return ERROR_NULL_POINTER;
-    time_struct->tm_year = aux->tm_year;
-    time_struct->tm_mon  = aux->tm_mon;
-    time_struct->tm_mday  = aux->tm_mday;
-    (*time_struct).tm_yday  = (*aux).tm_yday;	/* borrar esto */
+    (*time_struct).tm_year = (*aux).tm_year;
+    (*time_struct).tm_mon  = (*aux).tm_mon;
+    (*time_struct).tm_mday  = (*aux).tm_mday;
+    (*time_struct).tm_yday  = (*aux).tm_yday;
     return OK;
 }
 
@@ -35,11 +35,8 @@ status_t set_actual_date(struct tm *time_struct){
 Guarda en una estructura pasada por puntero
 la fecha y hora del dia
 ****************************************/
-status_t get_date(struct tm ** aux){		/* bajar un puntero */
+status_t get_date(struct tm ** aux){
     time_t temp;
-
-    if(aux == NULL)
-        return ERROR_NULL_POINTER;
 
     if (time(&temp) == -1) 
         return ERROR_DATE;      
