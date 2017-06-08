@@ -1,5 +1,5 @@
 /************
- * errors.h
+ * FILE errors.h
  ***********/
 #ifndef ERRORS_H
 #define ERRORS_H
