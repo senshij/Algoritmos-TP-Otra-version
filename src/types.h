@@ -1,6 +1,9 @@
-/*************
-FILE types.h
-*************/
+/************
+ * FILE types.h
+ ***********/
+#ifndef TYPES_H
+#define TYPES_H
+
 #include <stdio.h>
 
 typedef enum{
@@ -22,3 +25,5 @@ typedef enum{
     DATE_AAAAMMDDHHMMSS_FORMAT,
     DATE_AAAADDDHHMMSS_FORMAT
 } date_format_t;
+
+#endif

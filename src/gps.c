@@ -1,17 +1,17 @@
-/**********
-FILE gps.c
-**********/
+/************
+ * FILE gps.c
+ ************/
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include "gps.h"
 #include "types.h"
 #include "config.h"
 #include "msgs.h"
 #include "errors.h"
 #include "dates.h"
-#include "gps.h"
 
 /******************Prototipos**************************/
 status_t parse_field_time(long unsigned, struct tm *);
@@ -38,24 +38,24 @@ status_t parse_gps_line(struct tm *time_struct, bool_t * found, bool_t * eof){
         (*eof) = TRUE;
         return OK;
     }
-    token = strtok(gps_line, DELIMITER);
-    if (token ==NULL){
-       (*found) = FALSE;  
-       return OK;
+    if((token = strtok(gps_line, GPS_DELIMITER) ) == NULL){
+        (*found) = FALSE;  
+        return OK;
     }
     if(strncmp(token, ID_MSG, FIELD_SPAN_ID_MSG)){
         (*found) = FALSE; 
-          return OK;
+        return OK;
     }
-    token = strtok(NULL, DELIMITER);
+    token = strtok(NULL, GPS_DELIMITER);
     field_time_value = strtoul(token, remainder, 10);
     if(!(**remainder))
         return ERROR_INVALID_DATA;
     if((st = parse_field_time(field_time_value, time_struct)) != OK)
-            return ERROR_INVALID_DATA;
+        return ERROR_INVALID_DATA;
     (*found) = TRUE;
     return OK;
 }
+
 /*****************************************************
 Recibe una cadena de caracteres que contiene dígitos,
 verifica que corresponda al formato de horas hhmmss,
@@ -63,11 +63,14 @@ y si es asi lo guarda en la estructura que recibe.
 ****************************************************/
 status_t parse_field_time(long unsigned value, struct tm *time_struct){     
     long unsigned aux;
-    
+
+    if(time_struct == NULL)
+        return ERROR_NULL_POINTER;
+
     aux = (value /10000);
     if(aux > 23)
         return ERROR_INVALID_DATA;
-    time_struct ->tm_hour = aux;
+    time_struct->tm_hour = aux;
     aux = (value%10000)/100;
     if(aux > 59)
         return ERROR_INVALID_DATA;
@@ -77,16 +80,4 @@ status_t parse_field_time(long unsigned value, struct tm *time_struct){
         return ERROR_INVALID_DATA;
     time_struct->tm_sec = aux;
     return OK;
-}   
-/********************************************/
-/********************************************/
-
-   
-   
-   
-  
-   
-
-
-
-
+}

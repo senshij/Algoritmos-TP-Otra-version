@@ -28,4 +28,4 @@ process.o: process.c gps.h types.h dates.h config.h process.h errors.h msgs.h
 	$(CC) $(CFLAGS) -o process.o -c process.c
 
 clean:
-	rm *.o
+	rm -v *.o
