@@ -6,7 +6,6 @@
 #include "process.h"
 #include "types.h"
 #include "config.h"
-#include "msgs.h"
 #include "errors.h"
 #include "dates.h"
 #include "gps.h"
@@ -23,6 +22,7 @@ status_t process_gps_data(void){
     struct tm time_struct;
     bool_t eof = FALSE;
     bool_t found_geo_data;
+    FILE * fo = OUTPUT_STREAM;
 
     while(eof == FALSE){
         st = parse_gps_line(&time_struct, &found_geo_data, &eof);
@@ -34,7 +34,7 @@ status_t process_gps_data(void){
            if((st = set_actual_date(&time_struct)) != OK){
                return st;
            }
-           if ((st = print_time(time_struct, config.date_format, OUTPUT_STREAM)) != OK)
+           if ((st = print_time(time_struct, config.date_format, fo)) != OK)
                return st;
         }
     } /* while */

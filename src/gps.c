@@ -9,7 +9,6 @@
 #include "gps.h"
 #include "types.h"
 #include "config.h"
-#include "msgs.h"
 #include "errors.h"
 #include "dates.h"
 
