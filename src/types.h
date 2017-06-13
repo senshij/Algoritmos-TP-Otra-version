@@ -18,7 +18,7 @@ typedef enum{
     ERROR_INVALID_NUMBER_ARGS,
     ERROR_INVALID_DATA,
     ERROR_NULL_POINTER,
-    ERROR_DATE
+    ERROR_SET_DATE
 } status_t;
 
 typedef enum{
