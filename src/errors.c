@@ -2,10 +2,8 @@
 FILE errors.c
 ************/
 
-
 #include <stdio.h>
 #include "types.h"
-#include "config.h"
 #include "errors.h"
 
 
@@ -20,8 +18,7 @@ void print_error_message(status_t st){
     MSG_ERROR_SET_DATE
     };
 
-    puts(errors[st]);
-    putchar('\n');
+    fprintf(stderr, "%s\n", errors[st]);
 }
 
 

@@ -1,8 +1,8 @@
 /************
  * FILE types.h
  ***********/
-#ifndef TYPES_H
-#define TYPES_H
+#ifndef TYPES__H
+#define TYPES__H
 
 #include <stdio.h>
 

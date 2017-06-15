@@ -1,8 +1,8 @@
 /************
  * FILE config.h
  ************/
-#ifndef CONFIG_H
-#define CONFIG_H
+#ifndef CONFIG__H
+#define CONFIG__H
 
 #include <stdio.h>
 #include "types.h"

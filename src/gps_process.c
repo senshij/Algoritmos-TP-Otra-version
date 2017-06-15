@@ -3,7 +3,7 @@
  ***********/
 #include <stdio.h>
 #include <time.h>
-#include "process.h"
+#include "gps_process.h"
 #include "types.h"
 #include "config.h"
 #include "errors.h"
@@ -34,7 +34,7 @@ status_t process_gps_data(void){
            if((st = set_actual_date(&time_struct)) != OK){
                return st;
            }
-           if ((st = print_time(time_struct, config.date_format, fo)) != OK)
+           if ((st = print_time(&time_struct, config.date_format, fo)) != OK)
                return st;
         }
     } /* while */

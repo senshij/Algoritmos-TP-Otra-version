@@ -5,10 +5,11 @@
 #include <stdlib.h>
 #include <string.h>
 #include "main.h"
-#include "types.h"
 #include "config.h"
+#include "types.h"
+#include "dates.h"
 #include "errors.h"
-#include "process.h"
+#include "gps_process.h"
 
 /***************Prototipos******************************/
 status_t validate_args(int argc, char *argv[], config_t *);

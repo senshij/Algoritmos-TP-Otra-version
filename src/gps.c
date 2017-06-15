@@ -27,13 +27,13 @@ Si no devuelve NOT_FOUND.
 status_t parse_gps_line(struct tm *time_struct, bool_t * found, bool_t * eof){
     status_t st;
     char * token;
-    char ** remainder;
-    char gps_line[MAX_GPS_LINE];
+    char * remainder;
+    char gps_line[MAX_GPS_LINE+2];
     long unsigned field_time_value;
     
     if(time_struct == NULL || eof == NULL || found == NULL)
         return ERROR_NULL_POINTER;
-    if(fgets(gps_line, MAX_GPS_LINE - 2 ,stdin) == NULL){
+    if(fgets(gps_line, MAX_GPS_LINE + 2, stdin) == NULL){
         (*eof) = TRUE;
         return OK;
     }
@@ -46,11 +46,11 @@ status_t parse_gps_line(struct tm *time_struct, bool_t * found, bool_t * eof){
         return OK;
     }
     token = strtok(NULL, GPS_DELIMITER);
-    field_time_value = strtoul(token, remainder, 10);
-    if(!(**remainder))
+    field_time_value = strtoul(token, &remainder, 10);
+    if(!(*remainder))
         return ERROR_INVALID_DATA;
     if((st = parse_field_time(field_time_value, time_struct)) != OK)
-        return ERROR_INVALID_DATA;
+        return st;
     (*found) = TRUE;
     return OK;
 }
@@ -60,8 +60,8 @@ Recibe una cadena de caracteres que contiene dígitos,
 verifica que corresponda al formato de horas hhmmss,
 y si es asi lo guarda en la estructura que recibe.
 ****************************************************/
-status_t parse_field_time(long unsigned value, struct tm *time_struct){     
-    long unsigned aux;
+status_t parse_field_time(unsigned long value, struct tm *time_struct){     
+    unsigned long aux;
 
     if(time_struct == NULL)
         return ERROR_NULL_POINTER;

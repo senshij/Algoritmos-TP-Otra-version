@@ -1,8 +1,8 @@
 /************
  * FILE msgs.h
  ************/
-#ifndef MSGS_H
-#define MSGS_H
+#ifndef MSGS__H
+#define MSGS__H
 
 #include <stdio.h>
 #define MSG_ERROR_INVALID_DATA "El dato leído es inválido."

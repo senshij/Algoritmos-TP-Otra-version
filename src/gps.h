@@ -1,8 +1,8 @@
 /************
  * FILE gps.h
  ***********/
-#ifndef GPS_H
-#define GPS_H
+#ifndef GPS__H
+#define GPS__H
 
 #include <stdio.h>
 #include "types.h"

@@ -1,8 +1,8 @@
 /************
  * FILE errors.h
  ************/
-#ifndef ERRORS_H
-#define ERRORS_H
+#ifndef ERRORS__H
+#define ERRORS__H
 
 #include <stdio.h>
 #define MSG_ERROR_INVALID_DATA "El dato leído es inválido."

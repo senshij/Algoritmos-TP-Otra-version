@@ -1,8 +1,8 @@
 /************
  * process.h
  ***********/
-#ifndef PROCESS_H
-#define PROCESS_H
+#ifndef GPS_PROCESS__H
+#define GPS_PROCESS__H
 
 #include <stdio.h>
 #include "types.h"
